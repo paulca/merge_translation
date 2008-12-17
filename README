@@ -1,0 +1,57 @@
+MergeTranslation
+================
+
+The problem: When writing a localised app, I write in English and I maintain the en.yml translation file. Halfway through development, I ship out the en.yml file to my translator, for say, French (fr.yml) ... he updates the translations. Two weeks later, I have added lots of translations to the en.yml file, so the fr.yml file is out of date. What do I do? Enter merge_translation.
+
+
+Example
+=======
+
+Say you have an en.yml and it looks a bit like this:
+
+en:
+  beef: Beef
+  chicken: Chicken
+  pork: Pork
+  
+But your French file is out of date, it looks like this:
+
+fr:
+  beef: Boeuf
+  chicken: Poulet
+  
+This is ok for a small file, but when a translation file gets to hundreds of lines, it gets out of hand.
+
+merge_translation solves this with a simple rake task:
+
+rake translations:merge[fr,en]
+
+This takes config/locales/en.yml and merges it with config/locales/fr.yml giving:
+
+fr:
+  beef: Boeuf
+  chicken: Poulet
+  pork: Pork
+
+Then the French translator can run through the file updating the English to French. Woop!
+
+Requirements
+============
+
+Due to some unicode issues when dumping accented characters back to YAML, the out of the box Ruby YAML library doesn't cut it, so I used 'ya2yaml' ... a simple gem install will get it:
+
+gem install ya2yaml
+
+Extras
+======
+If you're using the default en-US locale, you can just hit:
+
+rake translations:merge[fr]
+
+If you're not storing translations in config/locales/ you can pass in a path:
+
+rake translations:merge[fr,en,lib/locales/]
+
+If you're not storing your translation files in YAML format, then this plugin won't help ... sorry! Feel free to fork and modify!
+
+Copyright (c) 2008 Paul Campbell, released under the MIT license

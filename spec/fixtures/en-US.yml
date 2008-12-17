@@ -1,0 +1,14 @@
+en-US:
+  test: This is a translation
+  nut: A nut, for deliciousness
+  accent: Something accented
+  
+  jan:
+    lehnardt:
+      billy: Fancy stuff
+      barry: very cool
+  
+  dashboard:
+    sidebar:
+      settings: Settings
+    welcome: Welcome
