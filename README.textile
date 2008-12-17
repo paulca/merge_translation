@@ -7,29 +7,29 @@ h2. Example
 
 Say you have an en.yml and it looks a bit like this:
 
-bq. en:
-  beef: Beef
-  chicken: Chicken
-  pork: Pork
+  en:
+    beef: Beef
+    chicken: Chicken
+    pork: Pork
 
 But your French file is out of date, it looks like this:
 
-bq. fr:
-  beef: Boeuf
-  chicken: Poulet
+  fr:
+    beef: Boeuf
+    chicken: Poulet
   
 This is ok for a small file, but when a translation file gets to hundreds of lines, it gets out of hand.
 
 merge_translation solves this with a simple rake task:
 
-bq. rake translations:merge[fr,en]
+  rake translations:merge[fr,en]
 
 This takes config/locales/en.yml and merges it with config/locales/fr.yml giving:
 
-bq. fr:
-  beef: Boeuf
-  chicken: Poulet
-  pork: Pork
+  fr:
+    beef: Boeuf
+    chicken: Poulet
+    pork: Pork
 
 Then the French translator can run through the file updating the English to French. Woop!
 
@@ -39,15 +39,17 @@ Due to some unicode issues when dumping accented characters back to YAML, the ou
 
 gem install ya2yaml
 
+
+
 h2. Extras
 
 If you're using the default en-US locale, you can just hit:
 
-bq. rake translations:merge[fr]
+  rake translations:merge[fr]
 
 If you're not storing translations in config/locales/ you can pass in a path:
 
-bq. rake translations:merge[fr,en,lib/locales/]
+  rake translations:merge[fr,en,lib/locales/]
 
 If you're not storing your translation files in YAML format, then this plugin won't help ... sorry! Feel free to fork and modify!
 
